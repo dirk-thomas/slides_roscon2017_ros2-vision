@@ -53,9 +53,1373 @@
             <small>
               Sep. 21st 2017<br/>
               Dirk Thomas, Mikael Arguedas<br/>
-              ROSCon 2017, Vancouver, Kanada
+              ROSCon 2017, Vancouver, Canada
             </small>
           </p>
+          <aside class="notes">
+            <ul>
+              <li>We will focus on capabilities and not on technicality or software architecture of ROS 2</li>
+              <li>Point to previous ROS 2 talks + invite for question after talk or at coffee breaks</li>
+
+              <li>In this presentation we want to follow Rob - the Roboticist - to show how we imagine ROS to be used in the future.</li>
+              <li>We will focus on capabilities and not on technicality or the software architecture of ROS 2, please watch the ROS 2 talks from the previous ROSCon years.</li>
+              <li>After this presentation we will have some time to answer questions, please feel free to catch any of us during the coffee breaks.</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <section>
+            <h2>"Unboxing"</h2>
+            <div class="fixed_size">
+              <img src="image/man.svg" width="20%" style="top: 250px; left: 10%" alt=""/>
+              <img src="image/drone.svg" width="25%" style="top: 250px; right: 10%" alt=""/>
+              <img src="image/ros.png" width="2%" style="top: 330px; right: 21.5%" alt=""/>
+            </div>
+
+            <div style="font-size: 40%; margin-left: 30%">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+            <aside class="notes">
+              <ul>
+                <li>We want to follow Rob - the Roboticist - to show how we imagine him to use ROS in the future.</li>
+                <li>We want to start with a couple of simple use cases. I will get more complicated during the presentation when our actor Rob gets serious about quality, reliability, and security.</li>
+                <li>Of course Rob selected a robot to start his robotics experience which already supports ROS.</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h2>Getting Started</h2>
+            <div class="fixed_size">
+              <img src="image/laptop.svg" width="25%" style="top: 250px; left: 10%" alt=""/>
+              <img src="image/drone.svg" width="25%" style="top: 250px; right: 10%" alt=""/>
+
+              <img src="image/windows.svg" width="9%" style="top: 311px; left: 18%" alt="" class="fragment current-visible" data-fragment-index="2"/>
+
+              <img src="image/package.svg" width="9%" style="top: 315px; left: 14%" alt="" class="fragment current-visible" data-fragment-index="3"/>
+              <img src="image/ros.png" width="7%" style="top: 320px; left: 23.5%" alt="" class="fragment current-visible" data-fragment-index="3"/>
+
+              <img src="image/game-controller.svg" width="10%" style="top: 150px; left: 18%" alt="" class="fragment" data-fragment-index="4"/>
+              <img src="image/py.svg" width="5%" style="top: 130px; left: 14%" alt="" class="fragment" data-fragment-index="4"/>
+              <img src="image/image.svg" width="12%" style="top: 500px; left: 17%" alt="" class="fragment" data-fragment-index="4"/>
+              <img src="image/c++.svg" width="5%" style="top: 570px; left: 13%" alt="" class="fragment" data-fragment-index="4"/>
+
+              <img src="image/wifi-100.svg" width="10%" style="top: 320px; left: 46%" alt="" class="fragment" data-fragment-index="5">
+
+              <svg id="getting-started-data-flow" width="960" height="550" class="fragment" data-fragment-index="5" xmlns:xlink= "http://www.w3.org/1999/xlink">
+                <marker id="getting-started-triangle" viewBox="0 0 10 10" refX="10" refY="5" markerUnits="strokeWidth" markerWidth="5" markerHeight="4" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z"/>
+                </marker>
+                <g title="control">
+                  <text x="520" y="110" text-anchor="middle">command data</text>
+                  <polyline class="data-flow" points="300,120 740,120 740,200" marker-end="url(#getting-started-triangle)" style="stroke-dasharray: 25 75; stroke-dashoffset: 0" />
+                </g>
+                <g title="video">
+                  <text x="520" y="460" text-anchor="middle">video data</text>
+                  <polyline class="data-flow" points="740,360 740,470 300,470" marker-end="url(#getting-started-triangle)" style="stroke-dasharray: 75 25; stroke-dashoffset: 0"/>
+                </g>
+              </svg>
+            </div>
+
+            <div style="font-size: 40%; margin-left: 30%">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a>, <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> and <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+            <aside class="notes">
+              <ul>
+                <li>First Rob installs ROS on his computer, even though he uses Windows that is not a problem.</li>
+                <li>Following a tutorial Rob starts two ROS nodes to interact with his new drone.</li>
+                <li>One Python component to use a joystick to control the drone.</li>
+                <li>One C++ component to show the images / video from the camera.</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h2>Moving Outdoor</h2>
+            <div class="fixed_size">
+              <img src="image/laptop.svg" width="25%" style="top: 250px; left: 10%" alt=""/>
+              <img src="image/drone.svg" width="25%" style="top: 250px; right: 10%" alt=""/>
+
+              <img src="image/game-controller.svg" width="10%" style="top: 150px; left: 18%" alt=""/>
+              <img src="image/image.svg" width="12%" style="top: 500px; left: 17%" alt=""/>
+
+              <img src="image/wifi-100.svg" width="10%" style="top: 320px; left: 46%" alt="" class="fragment fade-out" data-fragment-index="1">
+              <img src="image/wifi-66.svg" width="10%" style="top: 320px; left: 46%" alt="" class="fragment current-visible" data-fragment-index="1">
+              <img src="image/wifi-33.svg" width="10%" style="top: 320px; left: 46%" alt="" class="fragment current-visible" data-fragment-index="2">
+
+              <svg id="moving-outdoor-data-flow" width="960" height="550" xmlns:xlink= "http://www.w3.org/1999/xlink">
+                <marker id="moving-outdoor-triangle" viewBox="0 0 10 10" refX="10" refY="5" markerUnits="strokeWidth" markerWidth="5" markerHeight="4" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z"/>
+                </marker>
+                <g title="control">
+                  <text x="520" y="110" text-anchor="middle">command data</text>
+                  <polyline class="data-flow" points="300,120 740,120 740,200" marker-end="url(#moving-outdoor-triangle)" style="stroke-dasharray: 25 75; stroke-dashoffset: 0" />
+                </g>
+                <g title="video">
+                  <text x="520" y="460" text-anchor="middle">video data</text>
+                  <polyline class="data-flow" points="740,360 740,470 300,470" marker-end="url(#moving-outdoor-triangle)" style="stroke-dasharray: 75 25; stroke-dashoffset: 0"/>
+                </g>
+              </svg>
+            </div>
+
+            <div style="font-size: 40%; margin-left: 30%">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a>, <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> and <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a>from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>, is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+            <aside class="notes">
+              <ul>
+                <li>Since Rob's garage doesn't offer enough space for any flight maneuvers he moves to an outdoor environment.</li>
+                <li>The distance between the computer and drone gets larger and therefore the network connectivity worse.</li>
+                <li>Since the camera data are large in size they will start to get laggy and drop out from time to time.</li>
+                <li>Also the control channel will be affected - especially when the image data is being repeatedly retransmitted to compansate for lost network packages.</li>
+                <li>Since there needs to be a better way to handle this Rob tries to look into what is happening and how to mitigate it.</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h2>Quality of Service</h2>
+            <div class="fixed_size">
+              <svg id="quality-of-service" width="960" height="550" xmlns:xlink= "http://www.w3.org/1999/xlink">
+                <marker id="quality-of-service-triangle" viewBox="0 0 10 10" refX="10" refY="5" markerUnits="strokeWidth" markerWidth="5" markerHeight="4" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z"/>
+                </marker>
+                <g title="computer">
+                  <rect x="50" y="50" width="250" height="400" style="stroke: gray; stroke-dasharray: 5 10"/>
+                  <text x="175" y="40" text-anchor="middle">Computer</text>
+                  <ellipse cx="175" cy="150" rx="100" ry="50" />
+                  <text x="175" y="145" text-anchor="middle">joystick</text>
+                  <text x="175" y="175" text-anchor="middle">node</text>
+                  <ellipse cx="175" cy="350" rx="100" ry="50" />
+                  <text x="175" y="345" text-anchor="middle">image view</text>
+                  <text x="175" y="375" text-anchor="middle">node</text>
+                </g>
+                <g title="robot">
+                  <rect x="650" y="50" width="250" height="400" style="stroke: gray; stroke-dasharray: 5 10"/>
+                  <text x="775" y="40" text-anchor="middle">Robot</text>
+                  <ellipse cx="775" cy="150" rx="100" ry="50" />
+                  <text x="775" y="145" text-anchor="middle">flight cntrl</text>
+                  <text x="775" y="175" text-anchor="middle">node</text>
+                  <ellipse cx="775" cy="350" rx="100" ry="50" />
+                  <text x="775" y="345" text-anchor="middle">camera</text>
+                  <text x="775" y="375" text-anchor="middle">node</text>
+                </g>
+                <g title="topics">
+                  <text x="475" y="340" text-anchor="middle">/image</text>
+                  <polyline points="275,150 675,150" marker-end="url(#quality-of-service-triangle)" />
+                  <text x="475" y="140" text-anchor="middle">/cmd_vel</text>
+                  <polyline points="675,350 275,350" marker-end="url(#quality-of-service-triangle)" />
+                  <g title="reliable topic" class="fragment" data-fragment-index="1">
+                    <polyline points="275,150 675,150" marker-end="url(#quality-of-service-triangle)" style="stroke: green" />
+                    <text x="475" y="180" text-anchor="middle" style="fill: green; stroke: green">reliable</text>
+                  </g>
+                  <g title="best effort topic" class="fragment" data-fragment-index="2">
+                    <polyline points="675,350 275,350" marker-end="url(#quality-of-service-triangle)" style="stroke: blue" />
+                    <text x="475" y="380" text-anchor="middle" style="fill: blue; stroke: blue">best effort</text>
+                  </g>
+                </g>
+              </svg>
+            </div>
+
+            <aside class="notes">
+              <ul>
+                <li>Rob opens a graphical user interface which visualized the nodes and topics.</li>
+                <li>Introspect the topic attributes.</li>
+                <li>Change the QoS parameters on the fly to match his use case.</li>
+                <li>The control message should be sent with a higher priority and attempts to resend them since their arrival is critical.</li>
+                <li>The image data on the other hand doesn't need to be resend and should have a lower priority.</li>
+              </ul>
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Extend Capabilities: Hardware</h2>
+            <div class="fixed_size">
+              <svg id="adding-hardware" width="960" height="550" xmlns:xlink= "http://www.w3.org/1999/xlink">
+                <marker id="adding-hardware-triangle" viewBox="0 0 10 10" refX="10" refY="5" markerUnits="strokeWidth" markerWidth="5" markerHeight="4" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z"/>
+                </marker>
+                <g title="computer">
+                  <rect x="50" y="50" width="250" height="400" style="stroke: gray; stroke-dasharray: 5 10"/>
+                  <text x="175" y="40" text-anchor="middle">Computer</text>
+                  <ellipse cx="175" cy="150" rx="100" ry="50" />
+                  <text x="175" y="145" text-anchor="middle">image view</text>
+                  <text x="175" y="175" text-anchor="middle">node</text>
+                </g>
+                <g title="robot">
+                  <rect x="650" y="50" width="250" height="400" style="stroke: gray; stroke-dasharray: 5 10"/>
+                  <text x="775" y="40" text-anchor="middle">Robot</text>
+                  <ellipse cx="775" cy="150" rx="100" ry="50" />
+                  <text x="775" y="145" text-anchor="middle">camera</text>
+                  <text x="775" y="175" text-anchor="middle">node</text>
+                  <g title="camera2" class="fragment" data-fragment-index="2">
+                    <ellipse cx="775" cy="350" rx="100" ry="50" />
+                    <text x="775" y="345" text-anchor="middle">camera</text>
+                    <text x="775" y="375" text-anchor="middle">node #2</text>
+                  </g>
+                </g>
+                <g title="topics">
+                  <text x="475" y="140" text-anchor="middle">/image</text>
+                  <polyline points="675,150 275,150" marker-end="url(#adding-hardware-triangle)" />
+                  <g title="image2" class="fragment" data-fragment-index="2">
+                    <g title="image dangling" class="fragment fade-out" data-fragment-index="4">
+                      <text x="475" y="340" text-anchor="middle">/image</text>
+                      <polyline points="675,350 375,350" marker-end="url(#adding-hardware-triangle)" />
+                    </g>
+                    <g title="image colliding" class="fragment current-visible" data-fragment-index="4">
+                      <text x="475" y="340" text-anchor="middle" style="stroke: red">/image</text>
+                      <polyline points="675,350 375,350 275,150" marker-end="url(#adding-hardware-triangle)" style="stroke: red" />
+                    </g>
+                    <g title="image renamed" class="fragment" data-fragment-index="5">
+                      <text x="475" y="340" text-anchor="middle">/image2</text>
+                      <polyline points="675,350 275,350" marker-end="url(#adding-hardware-triangle)" />
+                    </g>
+                  </g>
+                </g>
+                <g title="badge" class="fragment" data-fragment-index="1">
+                  <g title="badge" class="fragment fade-out" data-fragment-index="4">
+                    <rect x="450" y="210" rx="20" ry="20" width="250" height="80" fill="gray" style="fill: #dddddd; stroke: gray"/>
+                    <image xlink:href="image/badge.svg" x="470" y="235" height="32px" width="32px"/>
+                    <text x="515" y="260" text-anchor="left">ROS-enabled</text>
+                  </g>
+                </g>
+                <g title="configure" class="fragment current-visible" data-fragment-index="3">
+                  <g title="badge" class="fragment fade-out" data-fragment-index="4">
+                    <rect x="500" y="410" rx="20" ry="20" width="380" height="120" fill="gray" style="fill: #dddddd; stroke: gray"/>
+                    <image xlink:href="image/settings.svg" x="520" y="435" height="32px" width="32px"/>
+                    <text x="565" y="460" text-anchor="left">Dynamically configure</text>
+                    <text x="565" y="500" text-anchor="left">FPS, Resolution, RoI, ...</text>
+                  </g>
+                </g>
+                <g title="rename" class="fragment" data-fragment-index="5">
+                  <ellipse cx="175" cy="350" rx="100" ry="50" />
+                  <text x="175" y="345" text-anchor="middle">image view</text>
+                  <text x="175" y="375" text-anchor="middle">node #2</text>
+                  <rect x="330" y="370" rx="20" ry="20" width="290" height="120" fill="gray" style="fill: #dddddd; stroke: gray"/>
+                  <image xlink:href="image/edit.svg" x="350" y="395" height="32px" width="32px"/>
+                  <text x="395" y="420" text-anchor="left">Rename topic</text>
+                  <text x="395" y="460" text-anchor="left">at runtime</text>
+                </g>
+              </svg>
+            </div>
+
+            <div style="font-size: 40%; margin-left: 30%">Icons made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a>, <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> and <a href="https://www.flaticon.com/authors/vectors-market" title="Vectors Market">Vectors Market</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+            <aside class="notes">
+              <ul>
+                <li>Rob wants to make his drone more capable - to avoid obstacles.</li>
+                <li>He buys a ROS-enabled camera.</li>
+                <li>Plug-n-play, device immediatly shows up as a ROS node.</li>
+                <li>It can optionally be configured at runtime.</li>
+                <li>The default topic name "collides" with the existing topic though.</li>
+                <li>Therefore rename topic on the fly to modify the ROS communication graph.</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h2>Extend Capabilities: Software</h2>
+            <div class="fixed_size">
+              <svg id="extend-capabilities" width="960" height="550" xmlns:xlink= "http://www.w3.org/1999/xlink">
+                <marker id="extend-capabilities-triangle" viewBox="0 0 10 10" refX="10" refY="5" markerUnits="strokeWidth" markerWidth="5" markerHeight="4" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z"/>
+                </marker>
+                <g title="nodes">
+                  <rect x="250" y="50" width="630" height="475" style="stroke: gray; stroke-dasharray: 5 10"/>
+                  <text x="525" y="40" text-anchor="middle">Robot</text>
+                  <ellipse cx="375" cy="150" rx="100" ry="50" />
+                  <text x="375" y="145" text-anchor="middle">flight cntrl</text>
+                  <text x="375" y="175" text-anchor="middle">node</text>
+                  <text x="150" y="140" text-anchor="middle">/cmd_vel</text>
+                  <polyline points="50,150 275,150" marker-end="url(#extend-capabilities-triangle)" />
+
+                  <ellipse cx="375" cy="325" rx="100" ry="50" />
+                  <text x="375" y="320" text-anchor="middle">left camera</text>
+                  <text x="375" y="350" text-anchor="middle">node</text>
+                  <text x="150" y="315" text-anchor="middle">/image_left</text>
+                  <polyline points="275,325 50,325" marker-end="url(#extend-capabilities-triangle)" />
+
+                  <ellipse cx="375" cy="450" rx="100" ry="50" />
+                  <text x="375" y="445" text-anchor="middle">right camera</text>
+                  <text x="375" y="475" text-anchor="middle">node</text>
+                  <text x="150" y="440" text-anchor="middle">/image_right</text>
+                  <polyline points="275,450 50,450" marker-end="url(#extend-capabilities-triangle)" />
+                </g>
+                <g title="instructions" class="fragment current-visible" data-fragment-index="1">
+                  <rect x="530" y="80" rx="20" ry="20" width="320" height="200" fill="gray" style="fill: #dddddd; stroke: gray"/>
+                  <image xlink:href="image/package.svg" x="545" y="95" height="32px" width="32px"/>
+                  <text x="585" y="120" text-anchor="left">Download package</text>
+                  <text x="585" y="160" text-anchor="left">providing capability</text>
+                  <image xlink:href="image/add.svg" x="545" y="195" height="32px" width="32px"/>
+                  <text x="585" y="220" text-anchor="left">Instantiate node(s)</text>
+                  <text x="585" y="260" text-anchor="left">at runtime</text>
+                </g>
+                <g title="add pipeline" class="fragment" data-fragment-index="1">
+                  <ellipse cx="675" cy="385" rx="100" ry="55" />
+                  <text x="675" y="380" text-anchor="middle">stereo image</text>
+                  <text x="675" y="410" text-anchor="middle">pipeline node</text>
+                </g>
+                <g title="new topics" class="fragment" data-fragment-index="2">
+                  <polyline points="475,325 580,370" marker-end="url(#extend-capabilities-triangle)" />
+                  <polyline points="475,450 580,400" marker-end="url(#extend-capabilities-triangle)" />
+                  <polyline points="675,330 674,150 475,150" marker-end="url(#extend-capabilities-triangle)" />
+                  <text x="605" y="140" text-anchor="middle">/obstacles</text>
+                </g>
+              </svg>
+            </div>
+
+            <div style="font-size: 40%; margin-left: 30%">Icons made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> and <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+            <aside class="notes">
+              <ul>
+                <li>Now Rob wants to make use of the second camera to detect obstacles using stereo vision.</li>
+                <li>Download package which provides the capability, start the node(s).</li>
+                <li>Configure topic mappings if necessary at runtime.</li>
+                <li>We will get back to the overhead of exchanging high bandwidth topics between nodes later.</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h2>Recap #1</h2>
+            <ul style="list-style: none;">
+              <li><img src="image/check.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/> Multi-OS support: Linux, Mac OS, Windows
+                <ul style="list-style: none;">
+                  <li><img src="image/hourglass.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/> Binary packages for Mac OS and Windows</li>
+                </ul>
+              </li>
+              <li style="line-height: 0.8em">&nbsp;</li>
+              <li><img src="image/check.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/> Different client libraries share common implementation</li>
+              <li style="line-height: 0.8em">&nbsp;</li>
+              <li><img src="image/check.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/> Quality of Service: variety of configuration options
+                <ul style="list-style: none;">
+                  <li><img src="image/check.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/> DDS provides even more configuration options, <a href="http://design.ros2.org/articles/ros_middleware_interface.html#optionally-exposing-native-handles">directly accessible</a></li>
+                </ul>
+              </li>
+              <li style="line-height: 0.8em">&nbsp;</li>
+              <li><img src="image/check.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/> Hardware with "native" communication interface<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(no need for separate protocols and driver packages)</li>
+              <li style="line-height: 0.8em">&nbsp;</li>
+              <li><img src="image/check.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/><img src="image/hourglass.svg" width="32px" alt="" style="margin: 0 0 0 -32px; vertical-align: middle"/> Event based notifications (rather than need for polling)</li>
+              <li><img src="image/hourglass.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/> Remapping of topics at runtime</li>
+              <li style="line-height: 0.8em">&nbsp;</li>
+            </ul>
+
+            <div style="font-size: 40%; margin-left: 30%">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+            <aside class="notes">
+              <ul>
+                <li>What have we seen so far?</li>
+                <li>Rob didn't have to do any programming yet and could use existing software and a graphical user interface only.</li>
+                <li>Some things are already possible today with ROS 1, some rely on new features available in the latest beta release of ROS 2, and some depend on future development to enable them.</li>
+                <li>Go through bullets.</li>
+              </ul>
+            </aside>
+          </section>
+        </section>
+
+
+        <section>
+          <section>
+            <h2>Undeterministic Startup</h2>
+            <div class="fixed_size">
+              <svg id="deterministic-startup" width="960" height="550" xmlns:xlink= "http://www.w3.org/1999/xlink">
+                <marker id="deterministic-startup-triangle" viewBox="0 0 10 10" refX="10" refY="5" markerUnits="strokeWidth" markerWidth="5" markerHeight="4" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z"/>
+                </marker>
+                <g title="status" class="fragment" data-fragment-index="1">
+                  <ellipse cx="375" cy="150" rx="100" ry="50" style="fill: #93c47d" />
+                  <ellipse cx="375" cy="325" rx="100" ry="50" style="fill: #93c47d" />
+                  <ellipse cx="375" cy="450" rx="100" ry="50" style="fill: #e06666" />
+                  <ellipse cx="675" cy="385" rx="100" ry="55" style="fill: #93c47d" />
+                  <text x="450" y="90" text-anchor="left" style="fill: #93c47d; stroke: #93c47d">nodes ready</text>
+                  <text x="450" y="510" text-anchor="left" style="fill: #e06666; stroke: #e06666">node not ready</text>
+                </g>
+                <g title="nodes">
+                  <rect x="250" y="50" width="630" height="475" style="stroke: gray; stroke-dasharray: 5 10"/>
+                  <text x="525" y="40" text-anchor="middle">Robot</text>
+                  <ellipse cx="375" cy="150" rx="100" ry="50"/>
+                  <text x="375" y="145" text-anchor="middle">flight cntrl</text>
+                  <text x="375" y="175" text-anchor="middle">node</text>
+                  <text x="150" y="140" text-anchor="middle">/cmd_vel</text>
+                  <polyline points="50,150 275,150" marker-end="url(#deterministic-startup-triangle)" />
+
+                  <ellipse cx="375" cy="325" rx="100" ry="50"/>
+                  <text x="375" y="320" text-anchor="middle">left camera</text>
+                  <text x="375" y="350" text-anchor="middle">node</text>
+                  <text x="150" y="315" text-anchor="middle">/image_left</text>
+                  <polyline points="275,325 50,325" marker-end="url(#deterministic-startup-triangle)" />
+
+                  <ellipse cx="375" cy="450" rx="100" ry="50"/>
+                  <text x="375" y="445" text-anchor="middle">right camera</text>
+                  <text x="375" y="475" text-anchor="middle">node</text>
+                  <text x="150" y="440" text-anchor="middle">/image_right</text>
+                  <polyline points="275,450 50,450" marker-end="url(#deterministic-startup-triangle)" />
+                </g>
+                <g title="add pipeline">
+                  <ellipse cx="675" cy="385" rx="100" ry="55"/>
+                  <text x="675" y="380" text-anchor="middle">stereo image</text>
+                  <text x="675" y="410" text-anchor="middle">pipeline node</text>
+                </g>
+                <g title="new topics">
+                  <polyline points="475,325 580,370" marker-end="url(#deterministic-startup-triangle)" />
+                  <polyline points="475,450 580,400" marker-end="url(#deterministic-startup-triangle)" />
+                  <polyline points="675,330 674,150 475,150" marker-end="url(#deterministic-startup-triangle)" />
+                  <text x="605" y="140" text-anchor="middle">/obstacles</text>
+                </g>
+                <g title="no obstacles" class="fragment" data-fragment-index="2">
+                  <text x="650" y="180" text-anchor="middle" style="fill: #e06666; stroke: #e06666">no obstacles reported</text>
+                  <image xlink:href="image/exploding.svg" x="550" y="200" height="64px" width="64px"/>
+                </g>
+              </svg>
+            </div>
+
+            <div style="font-size: 40%; margin-left: 30%">Icons made by <a href="https://www.flaticon.com/authors/ocha" title="OCHA">OCHA</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+            <aside class="notes">
+              <ul>
+                <li>Rob has a hard time making sure his drone is ready before flying it, sometimes it seem to not avoid obstacles as desired.</li>
+                <li>If individual nodes aren't working as expected that is not obvious.</li>
+                <li>E.g. one node is not operational therefore the nodes relying on its data are unable to perform the desired task.</li>
+                <li>Without any obstacle detection the drone will likely crash into an obstacle sooner or later.</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h2>Lifecycle State Machine</h2>
+            <div class="fixed_size">
+              <svg id="lifecycle" width="960" height="550" xmlns:xlink= "http://www.w3.org/1999/xlink">
+                <marker id="lifecycle-triangle" viewBox="0 0 10 10" refX="10" refY="5" markerUnits="strokeWidth" markerWidth="5" markerHeight="4" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z"/>
+                </marker>
+                <g title="states">
+                  <ellipse cx="180" cy="150" rx="100" ry="50" style="fill: #6fa8dc"/>
+                  <text x="180" y="160" text-anchor="middle">unconfigured</text>
+                  <ellipse cx="480" cy="150" rx="100" ry="50" style="fill: #dddddd"/>
+                  <text x="480" y="160" text-anchor="middle">inactive</text>
+                  <ellipse cx="480" cy="400" rx="100" ry="50" style="fill: #93c47d"/>
+                  <text x=480 y="410" text-anchor="middle">active</text>
+                  <ellipse cx="780" cy="150" rx="100" ry="50" style="fill: #6fa8dc"/>
+                  <text x="780" y="160" text-anchor="middle">finalized</text>
+                </g>
+                <g title="transitions">
+                  <polyline points="280,150 380,150" marker-end="url(#lifecycle-triangle)" />
+                  <polyline points="580,150 680,150" marker-end="url(#lifecycle-triangle)" />
+                  <path d="M 425 190 Q 375 275 425 360" marker-end="url(#lifecycle-triangle)" />
+                  <path d="M 535 360 Q 585 275 535 190" marker-end="url(#lifecycle-triangle)" />
+                </g>
+              </svg>
+            </div>
+
+            <div style="position: absolute; top: 85%; right: 0">
+              See the <a href="http://design.ros2.org/articles/node_lifecycle.html">design article</a> for more information.
+            </div>
+
+            <aside class="notes">
+              <ul>
+                <li>A node can have an optional lifecycle attached.</li>
+                <li>It starts in the "unconfigured" state.</li>
+                <li>Once the initialization is complete it moves into the "inactive" state.</li>
+                <li>From there it can activated in which state it is fully operational.</li>
+                <li>When being shutdown it transitions to the "finalized" state.</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h2>Deterministic Startup</h2>
+            <div class="fixed_size">
+              <svg id="deterministic-startup2" width="960" height="550" xmlns:xlink= "http://www.w3.org/1999/xlink">
+                <marker id="deterministic-startup2-triangle" viewBox="0 0 10 10" refX="10" refY="5" markerUnits="strokeWidth" markerWidth="5" markerHeight="4" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z"/>
+                </marker>
+                <g title="active" class="fragment fade-out" data-fragment-index="2">
+                  <ellipse cx="375" cy="150" rx="100" ry="50" style="fill: #dddddd"/>
+                  <ellipse cx="375" cy="325" rx="100" ry="50" style="fill: #dddddd"/>
+                  <ellipse cx="375" cy="450" rx="100" ry="50" style="fill: #dddddd"/>
+                  <ellipse cx="675" cy="385" rx="100" ry="55" style="fill: #dddddd"/>
+                  <text x="450" y="90" text-anchor="left" style="fill: #aaaaaa; stroke: #aaaaaa">inactive</text>
+                </g>
+                <g title="unconfigured" class="fragment fade-out" data-fragment-index="1">
+                  <ellipse cx="375" cy="450" rx="100" ry="50" style="fill: #6fa8dc" />
+                  <text x="450" y="510" text-anchor="left" style="fill: #6fa8dc; stroke: #6fa8dc">unconfigured</text>
+                  <image xlink:href="image/hourglass.svg" x="620" y="485" height="32px" width="32px"/>
+                </g>
+                <g title="active" class="fragment" data-fragment-index="2">
+                  <ellipse cx="375" cy="150" rx="100" ry="50" style="fill: #93c47d"/>
+                  <ellipse cx="375" cy="325" rx="100" ry="50" style="fill: #93c47d"/>
+                  <ellipse cx="375" cy="450" rx="100" ry="50" style="fill: #93c47d"/>
+                  <ellipse cx="675" cy="385" rx="100" ry="55" style="fill: #93c47d"/>
+                  <text x="450" y="90" text-anchor="left" style="fill: #93c47d; stroke: #93c47d">all active</text>
+                </g>
+                <g title="nodes">
+                  <rect x="250" y="50" width="630" height="475" style="stroke: gray; stroke-dasharray: 5 10"/>
+                  <text x="525" y="40" text-anchor="middle">Robot</text>
+                  <text x="375" y="145" text-anchor="middle">flight cntrl</text>
+                  <text x="375" y="175" text-anchor="middle">node</text>
+                  <text x="150" y="140" text-anchor="middle">/cmd_vel</text>
+                  <polyline points="50,150 275,150" marker-end="url(#deterministic-startup2-triangle)" />
+
+                  <text x="375" y="320" text-anchor="middle">left camera</text>
+                  <text x="375" y="350" text-anchor="middle">node</text>
+                  <text x="150" y="315" text-anchor="middle">/image_left</text>
+                  <polyline points="275,325 50,325" marker-end="url(#deterministic-startup2-triangle)" />
+
+                  <text x="375" y="445" text-anchor="middle">right camera</text>
+                  <text x="375" y="475" text-anchor="middle">node</text>
+                  <text x="150" y="440" text-anchor="middle">/image_right</text>
+                  <polyline points="275,450 50,450" marker-end="url(#deterministic-startup2-triangle)" />
+                </g>
+                <g title="add pipeline">
+                  <text x="675" y="380" text-anchor="middle">stereo image</text>
+                  <text x="675" y="410" text-anchor="middle">pipeline node</text>
+                </g>
+                <g title="new topics">
+                  <polyline points="475,325 580,370" marker-end="url(#deterministic-startup2-triangle)" />
+                  <polyline points="475,450 580,400" marker-end="url(#deterministic-startup2-triangle)" />
+                  <polyline points="675,330 674,150 475,150" marker-end="url(#deterministic-startup2-triangle)" />
+                  <text x="605" y="140" text-anchor="middle">/obstacles</text>
+                </g>
+                <g title="check" class="fragment" data-fragment-index="2">
+                  <rect x="550" y="180" rx="20" ry="20" width="250" height="80" fill="gray" style="fill: #dddddd; stroke: gray"/>
+                  <image xlink:href="image/check.svg" x="570" y="205" height="32px" width="32px"/>
+                  <text x="615" y="230" text-anchor="left">Ready to fly</text>
+                </g>
+              </svg>
+            </div>
+
+            <div style="font-size: 40%; margin-left: 30%">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+            <aside class="notes">
+              <ul>
+                <li>If the nodes from the previous example utilize this lifecycle the problematic node will be stuck in the "unconfigured" state while all other nodes are waiting in "inactive".</li>
+                <li>Once the last node is configured and reaches the "inactive" state all nodes can transition to "active" and the drone is ready to fly.</li>
+              </ul>
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Coexistance with ROS 1</h2>
+            <div class="fixed_size">
+              <img src="image/laptop.svg" width="25%" style="top: 210px; left: 10%" alt="" class="fragment" data-fragment-index="1"/>
+              <img src="image/drone2.svg" width="25%" style="top: 210px; right: 10%" alt=""/>
+
+              <img src="image/windows.svg" width="9%" style="top: 271px; left: 18%" alt="" class="fragment current-visible" data-fragment-index="1"/>
+
+              <img src="image/wifi-33.svg" width="10%" style="top: 280px; left: 46%" alt="" class="fragment" data-fragment-index="1">
+
+              <svg id="coexistance-ros1" width="960" height="550" xmlns:xlink= "http://www.w3.org/1999/xlink">
+                <marker id="coexistance-ros1-triangle" viewBox="0 0 10 10" refX="10" refY="5" markerUnits="strokeWidth" markerWidth="5" markerHeight="4" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z"/>
+                </marker>
+                <g title="label">
+                  <text x="745" y="400" text-anchor="middle">running ROS 1</text>
+                </g>
+                <g title="topics" class="fragment" data-fragment-index="1">
+                  <text x="405" y="120" text-anchor="middle">/cmd_vel</text>
+                  <polyline points="255,130 555,130" marker-end="url(#coexistance-ros1-triangle)" style="stroke: green" />
+                  <text x="405" y="160" text-anchor="middle" style="fill: green; stroke: green">reliable</text>
+                  <text x="405" y="360" text-anchor="middle">/image</text>
+                  <polyline points="555,370 255,370" marker-end="url(#coexistance-ros1-triangle)" style="stroke: blue" />
+                  <text x="405" y="400" text-anchor="middle" style="fill: blue; stroke: blue">best effort</text>
+
+                  <path d="M 600 60 Q 580 80 600 100 Q 620 120 600 140 580 160 600 180 Q 620 200 600 220 Q 580 240 600 260 Q 620 280 600 300 Q 580 320 600 340 Q 620 360 600 380 Q 580 400 600 420" />
+                </g>
+              </svg>
+            </div>
+
+            <div style="font-size: 40%; margin-left: 30%">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a>, <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> and <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+            <aside class="notes">
+              <ul>
+                <li>Rob's friend also has a drone but it runs ROS 1.</li>
+                <li>He wants to benefit from the features of using Windows and/or QoS options.</li>
+                <li>Instead of migrating all of the software he can utilize the `ros1_bridge` to make these systems interact.</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h2>Usage Patterns of the "ros1_bridge"</h2>
+            <ul style="list-style: none; margin-right: 40%">
+              <li>Beta <img src="image/countdown2.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/>
+                <ul>
+                  <li><a href="https://github.com/ros2/turtlebot2_demo">TurtleBot 2 demo</a></li>
+                  <li>Robot using ROS 2 onboard</li>
+                  <li>Computer uses ROS 1 tools,<br/>leverage existing ROS 1 packages</li>
+                </ul>
+              </li>
+              <li>Beta <img src="image/countdown3.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/>
+                <ul>
+                  <li><a href="https://github.com/ruffsl/hsr_demo">HSR demo</a> (see <img src="image/lightnings.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/> talk)</li>
+                  <li>Robot using ROS 1 onboard</li>
+                  <li>Computer uses ROS 2 tools,<br/>leverage intrinsic advantages<br/>of the communication protocol</li>
+                </ul>
+              </li>
+            </ul>
+
+            <div style="font-size: 40%; margin: 5% 0 0 30%">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> and <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+            <aside class="notes">
+              <ul>
+                <li>Rob reads about the bridge and the different ways it can be used.</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h2>Usage of the "ros1_bridge"</h2>
+            <div class="fixed_size">
+              <svg id="usage-ros1bridge" width="960" height="550" xmlns:xlink= "http://www.w3.org/1999/xlink">
+                <marker id="usage-ros1bridge-triangle" viewBox="0 0 10 10" refX="10" refY="5" markerUnits="strokeWidth" markerWidth="5" markerHeight="4" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z"/>
+                </marker>
+                <g title="topics">
+                  <text x="250" y="120" text-anchor="middle">/cmd_vel</text>
+                  <polyline points="100,130 400,130" marker-end="url(#usage-ros1bridge-triangle)" style="stroke: green" />
+                  <text x="250" y="160" text-anchor="middle" style="fill: green; stroke: green">reliable</text>
+                  <text x="250" y="360" text-anchor="middle">/image</text>
+                  <polyline points="400,370 100,370" marker-end="url(#usage-ros1bridge-triangle)" style="stroke: blue" />
+                  <text x="250" y="400" text-anchor="middle" style="fill: blue; stroke: blue">best effort</text>
+                </g>
+                <g title="robot">
+                  <rect x="400" y="50" width="500" height="400" style="stroke: gray; stroke-dasharray: 5 10"/>
+                  <text x="650" y="40" text-anchor="middle">ROS 1 Robot</text>
+                  <ellipse cx="775" cy="130" rx="100" ry="50" />
+                  <text x="775" y="125" text-anchor="middle">flight cntrl</text>
+                  <text x="775" y="155" text-anchor="middle">node</text>
+                  <ellipse cx="775" cy="250" rx="100" ry="50" />
+                  <text x="775" y="245" text-anchor="middle">processing</text>
+                  <text x="775" y="275" text-anchor="middle">node</text>
+                  <polyline points="775,200 775,180" marker-end="url(#usage-ros1bridge-triangle)" />
+                  <ellipse cx="775" cy="370" rx="100" ry="50" />
+                  <text x="775" y="365" text-anchor="middle">camera</text>
+                  <text x="775" y="395" text-anchor="middle">node</text>
+                  <polyline points="775,320 775,300" marker-end="url(#usage-ros1bridge-triangle)" />
+                </g>
+                <g title="bridge" class="fragment">
+                  <path d="M 525 70 Q 505 90 525 110 Q 545 130 525 150 505 170 525 190 Q 545 210 525 230 Q 505 250 525 270 Q 545 290 525 310 Q 505 330 525 350 Q 545 370 525 390 Q 505 410 525 430" style="stroke: gray" />
+                  <ellipse cx="525" cy="250" rx="100" ry="50" style="fill: white; fill-opacity: 0.5" />
+                  <text x="525" y="245" text-anchor="middle">ros1_bridge</text>
+                  <text x="525" y="275" text-anchor="middle">node</text>
+                  <polyline points="400,130 470,210" marker-end="url(#usage-ros1bridge-triangle)" style="stroke: green" />
+                  <polyline points="580,210 675,130" marker-end="url(#usage-ros1bridge-triangle)" />
+                  <polyline points="470,290 400,370" marker-end="url(#usage-ros1bridge-triangle)" style="stroke: blue" />
+                  <polyline points="675,370 580,290" marker-end="url(#usage-ros1bridge-triangle)" />
+                </g>
+              </svg>
+            </div>
+
+            <aside class="notes">
+              <ul>
+                <li>Rob and his friend add the `ros1_bridge` to the robot only bridging the two topics they are interested in for now.</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h2>Usage Patterns of the "ros1_bridge"</h2>
+            <ul style="list-style: none; margin-right: 40%">
+              <li>Beta <img src="image/countdown2.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/>
+                <ul>
+                  <li><a href="https://github.com/ros2/turtlebot2_demo">TurtleBot 2 demo</a></li>
+                  <li>Robot using ROS 2 onboard</li>
+                  <li>Computer uses ROS 1 tools,<br/>leverage existing ROS 1 packages</li>
+                </ul>
+              </li>
+              <li>Beta <img src="image/countdown3.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/>
+                <ul>
+                  <li><a href="https://github.com/ruffsl/hsr_demo">HSR demo</a> (see <img src="image/lightnings.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/> talk)</li>
+                  <li>Robot using ROS 1 onboard</li>
+                  <li>Computer uses ROS 2 tools,<br/>leverage intrinsic advantages<br/>of the communication protocol</li>
+                </ul>
+              </li>
+              <li><img src="image/puzzle.svg" width="48px" alt="" style="margin: 0; vertical-align: middle"/>
+                <ul>
+                  <li>Incrementally migrate a ROS system</li>
+                </ul>
+              </li>
+            </ul>
+
+            <svg id="migrate" width="460" height="550" xmlns:xlink= "http://www.w3.org/1999/xlink" style="position: absolute; top: 30%; right: 0">
+              <marker id="migrate-triangle" viewBox="0 0 10 10" refX="10" refY="5" markerUnits="strokeWidth" markerWidth="5" markerHeight="4" orient="auto">
+                <path d="M 0 0 L 10 5 L 0 10 z"/>
+              </marker>
+              <g title="robot">
+                <rect x="100" y="100" width="350" height="300" style="stroke: gray; stroke-dasharray: 5 10"/>
+                <text x="275" y="90" text-anchor="middle">Robot</text>
+                <g class="fragment fade-out" data-fragment-index="1">
+                  <ellipse cx="375" cy="150" rx="40" ry="25" style="stroke: blue"/>
+                  <text x="375" y="155" text-anchor="middle" style="font-size: 0.5em">ROS 1 node</text>
+                </g>
+                <ellipse cx="375" cy="250" rx="40" ry="25" />
+                <text x="375" y="255" text-anchor="middle" style="font-size: 0.5em">ROS 1 node</text>
+                <ellipse cx="375" cy="350" rx="40" ry="25" />
+                <text x="375" y="355" text-anchor="middle" style="font-size: 0.5em">ROS 1 node</text>
+                <g class="fragment" data-fragment-index="1">
+                  <ellipse cx="175" cy="150" rx="40" ry="25" style="stroke: blue"/>
+                  <text x="175" y="155" text-anchor="middle" style="font-size: 0.5em">ROS 2 node</text>
+                </g>
+              </g>
+              <g title="topics">
+                <g class="fragment fade-out" data-fragment-index="1">
+                  <polyline points="100,150 260,175" marker-end="url(#migrate-triangle)" />
+                  <polyline points="290,175 335,150" marker-end="url(#migrate-triangle)" />
+                  <polyline points="375,175 375,225" marker-end="url(#migrate-triangle)" />
+                </g>
+                <polyline points="375,275 375,325" marker-end="url(#migrate-triangle)" />
+                <polyline points="335,350 290,325" marker-end="url(#migrate-triangle)" />
+                <polyline points="260,325 100,350" marker-end="url(#migrate-triangle)" />
+                <g class="fragment" data-fragment-index="1">
+                  <polyline points="100,150 135,150" marker-end="url(#migrate-triangle)" />
+                  <polyline points="215,150 260,175" marker-end="url(#migrate-triangle)" />
+                  <polyline points="290,175 375,225" marker-end="url(#migrate-triangle)" />
+                </g>
+              </g>
+              <g title="bridge">
+                <path d="M 275 120 Q 285 130 275 140 Q 265 150 275 160 Q 285 170 275 180 Q 265 190 275 200 Q 285 210 275 220 Q 265 230 275 240 Q 285 250 275 260 Q 265 270 275 280 Q 285 290 275 300 Q 265 310 275 320 Q 285 330 275 340 Q 265 350 275 360 Q 285 370 275 380" style="stroke: gray"/>
+                <ellipse cx="275" cy="250" rx="25" ry="100" style="fill: white; fill-opacity: 0.5"/>
+                <text x="0" y="0" text-anchor="middle" transform="rotate(90) translate(250 -265)">bridge</text>
+              </g>
+            </svg>
+
+            <div style="font-size: 40%; margin: 5% 0 0 30%">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> and <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+            <aside class="notes">
+              <ul>
+                <li>Rob reads about the bridge and the different ways it can be used.</li>
+              </ul>
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Multi Robot</h2>
+            <ul>
+              <li>Distributed discovery useful for on-demand robot-to-robot comm.
+                <ul style="font-size: 0.8em">
+                  <li>All current ROS middleware implementations support it</li>
+                  <li>As long as all robots use the same comm. protocol<br/>they can communicate (independent of the vendor)</li>
+                </ul>
+              </li>
+              <li style="list-style-type: none; line-height: 0.5em">&nbsp;</li>
+              <li>Quality of Service settings to tailor the comm. for the specific scenario
+                <ul style="font-size: 0.8em; list-style: none;">
+                  <li>(see eProsima's talk @ 11:35)</li>
+                </ul>
+              </li>
+              <li style="list-style-type: none; line-height: 0.5em">&nbsp;</li>
+              <li>Dynamic remapping of topics enables various different approaches, e.g.:
+                <ul style="font-size: 0.8em">
+                  <li>Flip namespaced robot spec. topics to be "global"
+                    <ul style="list-style: none">
+                     <li><code>/robotA/pose</code> &rarr; <code>/pose</code></li>
+                    </ul>
+                  </li>
+                  <li>Subscribe to a specific topic from a group of robots
+                    <ul style="list-style: none">
+                     <li><code>/**/pose</code> &nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp; <code>/floor2/*/pose</code></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <img src="image/eProsima_logo_only.png" style="position: absolute; top: 26%; right: 22%; width: 7%" />
+            <img src="image/rti_logo_only.jpeg" width="10%" style="position: absolute; top: 26%; right: 12%; width: 6%" />
+            <img src="image/PrismTech_logo_only.png" width="10%" style="position: absolute; top: 28%; right: 0; width: 8%" />
+
+            <aside class="notes">
+              <ul>
+                <li>Now having two robots which "speak" ROS 2 over the network they can make use of the intrinsic benefits of the underlying communication protocol.</li>
+                <li>E.g. notification when a new robot comes into communication range or when it leaves (based on configurable thresholds for heartbeat).</li>
+                <li>This opens the possibility for dynamic cooperative behavior.</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h2>Adding a Custom Sensor</h2>
+            <div class="fixed_size">
+              <svg id="custom-sensor" width="960" height="550" xmlns:xlink= "http://www.w3.org/1999/xlink">
+                <marker id="custom-sensor-triangle" viewBox="0 0 10 10" refX="10" refY="5" markerUnits="strokeWidth" markerWidth="5" markerHeight="4" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z"/>
+                </marker>
+                <g title="robot">
+                  <rect x="25" y="50" width="500" height="475" style="stroke: gray; stroke-dasharray: 5 10"/>
+                  <text x="275" y="40" text-anchor="middle">Robot</text>
+                  <ellipse cx="175" cy="250" rx="100" ry="50" style="fill: #dddddd"/>
+                  <text x="175" y="245" text-anchor="middle">receiver</text>
+                  <text x="175" y="275" text-anchor="middle">node</text>
+                  <ellipse cx="175" cy="450" rx="100" ry="50" style="fill: #dddddd"/>
+                  <text x="175" y="445" text-anchor="middle">GPS receiver</text>
+                  <text x="175" y="475" text-anchor="middle">node</text>
+                  <ellipse cx="400" cy="350" rx="100" ry="50" style="fill: #dddddd"/>
+                  <text x="400" y="345" text-anchor="middle">Pose estim.</text>
+                  <text x="400" y="375" text-anchor="middle">node</text>
+                  <image xlink:href="image/c++.svg" x="225" y="250" height="32px" width="32px"/>
+                  <image xlink:href="image/bluetooth_logo.svg" x="75" y="225" height="50px" width="50px"/>
+                  <polyline points="255,280 330,314" marker-end="url(#custom-sensor-triangle)" />
+                  <polyline points="255,420 330,385" marker-end="url(#custom-sensor-triangle)" />
+                  <polyline points="265,230 470,230" marker-end="url(#custom-sensor-triangle)" />
+                  <text x="370" y="220" text-anchor="middle">/found_beacon</text>
+                </g>
+                <g title="home">
+                  <rect x="650" y="50" width="300" height="475" style="stroke: gray; stroke-dasharray: 5 10"/>
+                  <text x="800" y="40" text-anchor="middle">Home</text>
+                  <rect x="730" y="250" rx="20" ry="20" width="180" height="80" fill="gray" style="fill: #dddddd; stroke: gray"/>
+                  <text x="835" y="300" text-anchor="middle">Beacon</text>
+                  <image xlink:href="image/bluetooth_logo.svg" x="740" y="265" height="50px" width="50px"/>
+                </g>
+                <g title="raspberry-pi" class="fragment current-visible" data-fragment-index="1">
+                  <rect x="50" y="100" width="250" height="220" style="stroke: red; stroke-dasharray: 5 10"/>
+                  <text x="100" y="90" text-anchor="left" style="fill: #ee0000; stroke: #ee0000">RaspberryPi</text>
+                  <image xlink:href="image/raspberry.svg" x="75" y="125" height="64px" width="64px"/>
+                </g>
+                <g title="raspi-overkill" class="fragment current-visible" data-fragment-index="2">
+                  <rect x="50" y="100" width="250" height="220" style="stroke: red; stroke-dasharray: 5 10"/>
+                  <text x="100" y="90" text-anchor="left" style="fill: #ee0000; stroke: #ee0000">RaspberryPi</text>
+                  <image xlink:href="image/raspberry.svg" x="75" y="125" height="64px" width="64px"/>
+                  <rect x="400" y="85" rx="20" ry="20" width="450" height="80" fill="gray" style="fill: #dddddd; stroke: gray"/>
+                  <text x="415" y="120" text-anchor="left">Overkill to add a RaspberryPi</text>
+                  <text x="415" y="150" text-anchor="left">just for a Bluetooth receiver node</text>
+                </g>
+                <g title="mcu" class="fragment" data-fragment-index="3">
+                  <rect x="50" y="100" width="250" height="220" style="stroke: blue; stroke-dasharray: 5 10"/>
+                  <text x="100" y="90" text-anchor="left" style="fill: #0000ee; stroke: #0000ee">MCU module</text>
+                  <image xlink:href="image/raspberry.svg" x="75" y="125" height="64px" width="64px"/>
+                  <image xlink:href="image/delete.svg" x="75" y="125" height="64px" width="64px"/>
+                  <image xlink:href="image/cpu.svg" x="175" y="125" height="64px" width="64px"/-->
+                </g>
+                <g title="check" class="fragment" data-fragment-index="4">
+                  <rect x="550" y="130" rx="20" ry="20" width="310" height="80" fill="gray" style="fill: #dddddd; stroke: gray"/>
+                  <image xlink:href="image/check.svg" x="570" y="155" height="32px" width="32px"/>
+                  <text x="615" y="180" text-anchor="left">Same ROS 2 code!</text>
+                </g>
+              </svg>
+            </div>
+
+            <div style="font-size: 40%; margin-left: 30%">Icons made by <a href="https://www.flaticon.com/authors/alfredo-hernandez" title="Alfredo Hernandez">Alfredo Hernandez</a>, <a href="http://www.freepik.com" title="Freepik">Freepik</a> and <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+            <aside class="notes">
+              <ul>
+                <li>Rob wants to implement a "return home automatically" feature. That could become handy in a handful of situation, e.g. when the drone goes out of sight, out of connexion or run low on battery</li>
+                <li>After a few tries Rob finds out that GPS data is not precise enough to reliabily localize itself and thus go home safely</li>
+                <li>He buys a bluetooth beacon that he sets up at home as a lighthouse for his drone</li>
+                <li>To leverage it he uses the bluetooth receiver of his RaspberryPi and code a ROS2 node to provide estimated heading and distance to the beacon</li>
+                <li>Once he gets his node working, Rob realizes he doesnt have room for an extra SBC on his drone and decides to buy a small microcontroller based solution</li>
+                <li>He compiles his ROS 2 node on the microcontroller and the job is done!</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h2>Flight Controller Internals</h2>
+            <div class="fixed_size">
+              <svg id="flight-controller" width="960" height="550" xmlns:xlink= "http://www.w3.org/1999/xlink">
+                <marker id="flight-controller-triangle" viewBox="0 0 10 10" refX="10" refY="5" markerUnits="strokeWidth" markerWidth="5" markerHeight="4" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z"/>
+                </marker>
+                <marker id="flight-controller-deadend" viewBox="0 0 5 30" refX="5" refY="15" markerUnits="strokeWidth" markerWidth="5" markerHeight="4" orient="auto">
+                  <rect x="0" y="0" width="5" height="30" style="fill: #e06666; stroke: #e06666"/>
+                </marker>
+                <g title="topics">
+                  <text x="100" y="140" text-anchor="middle">/found_beacon</text>
+                  <polyline points="10,150 200,150" marker-end="url(#flight-controller-triangle)" />
+                </g>
+                <g title="node">
+                  <rect x="100" y="50" width="760" height="490" style="stroke: gray; stroke-dasharray: 5 10"/>
+                  <text x="480" y="40" text-anchor="middle">Flight controller node</text>
+                </g>
+                <g title="threads">
+                  <rect x="200" y="100" width="150" height="390" style="stroke: gray; stroke-dasharray: 5 10"/>
+                  <text x="275" y="90" text-anchor="middle" style="font-size: 0.8em">Subscription thread</text>
+                  <g title="thread" transform="translate(275, 120)">
+                    <polyline points="0,0 10,10 -10,30 10,50 -10,70 10,90 -10,110 10,130 -10,150 10,170 -10,190 10,210 -10,230 10,250 -10,270 10,290 -10,310 0,320 0,350" marker-end="url(#flight-controller-triangle)" />
+                  </g>
+
+                  <rect x="405" y="100" width="150" height="390" style="stroke: #e06666; stroke-dasharray: 5 10"/>
+                  <text x="480" y="90" text-anchor="middle" style="font-size: 0.8em; fill: #e06666; stroke: #e06666;">Realtime thread</text>
+                  <g title="thread" transform="translate(480, 120)">
+                    <polyline points="0,0 10,10 -10,30 10,50 -10,70 10,90 -10,110 10,130 -10,150 10,170 -10,190 10,210 -10,230 10,250 -10,270 10,290 -10,310 0,320 0,350" marker-end="url(#flight-controller-triangle)" />
+                  </g>
+
+                  <rect x="610" y="100" width="150" height="390" style="stroke: gray; stroke-dasharray: 5 10"/>
+                  <text x="685" y="90" text-anchor="middle" style="font-size: 0.8em">Publication thread</text>
+                  <g title="thread" transform="translate(685, 120)">
+                    <polyline points="0,0 10,10 -10,30 10,50 -10,70 10,90 -10,110 10,130 -10,150 10,170 -10,190 10,210 -10,230 10,250 -10,270 10,290 -10,310 0,320 0,350" marker-end="url(#flight-controller-triangle)" />
+                  </g>
+                </g>
+                <g title="data flow">
+                  <g class="fragment" data-fragment-index="1">
+                    <polyline points="200,150 265,150" marker-end="url(#flight-controller-triangle)" />
+                    <polyline points="285,170 445,170" marker-end="url(#flight-controller-deadend)" />
+                    <g title="message" class="fragment current-visible" data-fragment-index="1">
+                      <rect x="215" y="230" rx="20" ry="20" width="530" height="50" fill="gray" style="fill: #dddddd; stroke: #e06666"/>
+                      <text x="480" y="265" text-anchor="middle" style="fill: #e06666; stroke: #e06666">Message blocked until next update loop</text>
+                    </g>
+                  </g>
+                  <g class="fragment" data-fragment-index="2">
+                    <polyline points="415,230 545,230" style="fill: green; stroke: green" />
+                    <polyline points="445,175 445,230 470,230" marker-end="url(#flight-controller-triangle)" />
+                    <g title="message" class="fragment current-visible" data-fragment-index="2">
+                      <rect x="115" y="285" rx="20" ry="20" width="730" height="50" fill="gray" style="fill: #dddddd; stroke: green"/>
+                      <text x="480" y="320" text-anchor="middle" style="fill: green; stroke: green">Update loop: storing incoming msg in prealloc. structure</text>
+                    </g>
+                  </g>
+                  <g class="fragment" data-fragment-index="3">
+                    <polyline points="490,330 515,330" marker-end="url(#flight-controller-triangle)" />
+                    <g title="message" class="fragment current-visible" data-fragment-index="3">
+                      <rect x="155" y="380" rx="20" ry="20" width="650" height="50" fill="gray" style="fill: #dddddd; stroke: gray"/>
+                      <text x="480" y="415" text-anchor="middle" style="fill: gray; stroke: gray">Performing realtime task, filling out outgoing msg</text>
+                    </g>
+                  </g>
+                  <g class="fragment" data-fragment-index="4">
+                    <polyline points="415,390 545,390" style="fill: green; stroke: green" />
+                    <polyline points="515,330 515,390 675,390" marker-end="url(#flight-controller-triangle)" />
+                    <g title="message" class="fragment current-visible" data-fragment-index="4">
+                      <rect x="215" y="435" rx="20" ry="20" width="530" height="50" fill="gray" style="fill: #dddddd; stroke: green"/>
+                      <text x="480" y="470" text-anchor="middle" style="fill: green; stroke: green">Update loop: copying outgoing msg</text>
+                    </g>
+                  </g>
+                  <g class="fragment" data-fragment-index="5">
+                    <polyline points="695,410 760,410" marker-end="url(#flight-controller-triangle)" />
+                    <text x="850" y="400" text-anchor="middle">/return_home</text>
+                    <polyline points="760,410 940,410" marker-end="url(#flight-controller-triangle)" />
+                  </g>
+                </g>
+              </svg>
+            </div>
+
+            <aside class="notes">
+              <ul>
+                <li>In order to make use of his new sensor Rob wants to understand how the real time controllers works internally.</li>
+                <li>He realizes that it is implemented as a "normal" ROS node with the common real time constraints of not allocating memory etc.</li>
+                <li>Rob modified the node to subscribe to his new beacon message and trigger the "return to home" behavior when not receiving a message for some time.</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h2>Recap #2</h2>
+            <ul style="list-style: none;">
+              <li><img src="image/check.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/> Lifecycle nodes</li>
+              <li><img src="image/check.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/><img src="image/hourglass.svg" width="32px" alt="" style="margin: 0 0 0 -32px; vertical-align: middle"/> Basic Python-based launch files
+                <ul style="list-style: none;">
+                  <li><img src="image/hourglass.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/> Launch utilizing lifecycle state machine</li>
+                </ul>
+              </li>
+              <li style="line-height: 0.8em">&nbsp;</li>
+              <li><img src="image/check.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/> Dual-home bridge to exchange msgs / srvs between ROS 1 and ROS 2
+                <ul style="list-style: none;">
+                  <li><img src="image/hourglass.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/> More configuration options</li>
+                </ul>
+              </li>
+              <li style="line-height: 0.8em">&nbsp;</li>
+              <li><img src="image/hourglass.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/>Multi robot benefiting from the communication protocol:<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;distributed discovery, configurable QoS, dynamic remapping</li>
+              <li style="line-height: 0.8em">&nbsp;</li>
+              <li><img src="image/hourglass.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/>"Native" communication protocol with micro controllers (<a href="http://www.omg.org/news/releases/pr2016/04-04-16.htm">DDS-XRCE</a>)</li>
+              <li style="line-height: 0.8em">&nbsp;</li>
+              <li><img src="image/check.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/> Proof of concept for real time support using custom allocators
+                <ul style="list-style: none;">
+                  <li><img src="image/hourglass.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/> No usage of real time kernel yet, no continuous testing</li>
+                </ul>
+              </li>
+              <li style="line-height: 0.8em">&nbsp;</li>
+            </ul>
+
+            <div style="font-size: 40%; margin-left: 30%">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+            <aside class="notes">
+              <ul>
+                <li>Go through bullets.</li>
+              </ul>
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Process Layout Decision</h2>
+            <div class="fixed_size">
+              <svg id="process-layout" width="960" height="550" xmlns:xlink= "http://www.w3.org/1999/xlink">
+                <marker id="process-layout-triangle" viewBox="0 0 10 10" refX="10" refY="5" markerUnits="strokeWidth" markerWidth="5" markerHeight="4" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z"/>
+                </marker>
+                <g title="nodes">
+                  <rect x="250" y="50" width="630" height="475" style="stroke: gray; stroke-dasharray: 5 10"/>
+                  <text x="525" y="40" text-anchor="middle">Robot</text>
+                  <ellipse cx="375" cy="150" rx="100" ry="50" style="" />
+                  <text x="375" y="145" text-anchor="middle">flight cntrl</text>
+                  <text x="375" y="175" text-anchor="middle">node</text>
+                  <text x="150" y="140" text-anchor="middle">/cmd_vel</text>
+                  <polyline points="50,150 275,150" marker-end="url(#process-layout-triangle)" />
+
+                  <ellipse cx="375" cy="325" rx="100" ry="50" style="" />
+                  <text x="375" y="320" text-anchor="middle">left camera</text>
+                  <text x="375" y="350" text-anchor="middle">node</text>
+                  <text x="150" y="315" text-anchor="middle">/image_left</text>
+                  <polyline points="275,325 50,325" marker-end="url(#process-layout-triangle)" />
+
+                  <ellipse cx="375" cy="450" rx="100" ry="50" style="" />
+                  <text x="375" y="445" text-anchor="middle">right camera</text>
+                  <text x="375" y="475" text-anchor="middle">node</text>
+                  <text x="150" y="440" text-anchor="middle">/image_right</text>
+                  <polyline points="275,450 50,450" marker-end="url(#process-layout-triangle)" />
+                </g>
+                <g title="add pipeline">
+                  <ellipse cx="675" cy="385" rx="100" ry="55" style="" />
+                  <text x="675" y="380" text-anchor="middle">stereo image</text>
+                  <text x="675" y="410" text-anchor="middle">pipeline node</text>
+                </g>
+                <g title="new topics">
+                  <polyline points="475,325 580,370" marker-end="url(#process-layout-triangle)" />
+                  <polyline points="475,450 580,400" marker-end="url(#process-layout-triangle)" />
+                  <polyline points="675,330 674,150 475,150" marker-end="url(#process-layout-triangle)" />
+                  <text x="605" y="140" text-anchor="middle">/obstacles</text>
+                </g>
+                <g title="overhead" class="fragment current-visible" data-fragment-index="3">
+                  <polyline points="475,325 580,370" marker-end="url(#process-layout-triangle)" style="stroke: red" />
+                  <polyline points="475,450 580,400" marker-end="url(#process-layout-triangle)" style="stroke: red" />
+                  <g title="warning" >
+                    <rect x="250" y="335" rx="20" ry="20" width="240" height="100" fill="gray" style="fill: #dddddd; stroke: gray"/>
+                    <image xlink:href="image/warning.svg" x="270" y="350" height="32px" width="32px"/>
+                    <text x="315" y="375" text-anchor="left">High band-</text>
+                    <text x="315" y="415" text-anchor="left">width topics</text>
+                  </g>
+                </g>
+                <g title="minimize" class="fragment" data-fragment-index="4">
+                  <rect x="265" y="263" rx="40" ry="40" width="520" height="250" style="stroke: #3db39e"/>
+                  <image xlink:href="image/minimize.svg" x="490" y="360" height="48px" width="48px"/>
+                  <text x="525" y="253" text-anchor="middle" style="stroke: #3db39e">Single Process</text>
+                </g>
+                <g title="minimize" class="fragment" data-fragment-index="5">
+                  <rect x="540" y="80" rx="20" ry="20" width="310" height="100" style="fill: #dddddd; stroke: gray"></rect>
+                  <image xlink:href="image/download.svg" x="560" y="97" height="32px" width="32px"/>
+                  <text x="600" y="120" text-anchor="left">Save configuration</text>
+                  <text x="600" y="160" text-anchor="left">as launch file</text>
+                </g>
+              </svg>
+            </div>
+
+            <div style="font-size: 40%; margin-left: 30%">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> and <a href="https://www.flaticon.com/authors/pixel-buddha" title="Pixel Buddha">Pixel Buddha</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+            <aside class="notes">
+              <ul>
+                <li>Rob notices that the performance of the drone has gone worse since adding the stereo pipeline.</li>
+                <li>Using the ROS graph introspection he finds out about the high bandwidth of the two image topics and learns about the significant overhead.</li>
+                <li>Rob draws a box around the camera nodes and the processing node and clicks the "run in the same process" button which avoids the overhead of serializing as well as copying the image data.</li>
+                <li>The performance improvement is being traded for less fault isolation in case of one of the nodes segfaulting.</li>
+                <li>Rob is able to save the modified process layout in a launch file to reuse the same setup in the future without having to reconfigure it again.</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h2>Fault Tolerance and Fallback Behaviors</h2>
+            <div class="fixed_size">
+              <svg id="fault-tolerance-data-flow" width="960" height="550" xmlns:xlink= "http://www.w3.org/1999/xlink">
+                <marker id="fault-tolerance-triangle" viewBox="0 0 10 10" refX="10" refY="5" markerUnits="strokeWidth" markerWidth="5" markerHeight="4" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z"/>
+                </marker>
+                <marker id="fault-tolerance-triangle-orange" viewBox="0 0 10 10" refX="10" refY="5" markerUnits="strokeWidth" markerWidth="5" markerHeight="4" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z" style="fill: orange; stroke: orange"/>
+                </marker>
+                <g transform="translate(-50 0)">
+                  <g title="node shapes">
+                    <g title="left camera and stereo green" class="fragment fade-out" data-fragment-index="2">
+                      <ellipse cx="330" cy="100" rx="100" ry="50" style="fill: #93c47d" />
+                      <ellipse cx="780" cy="250" rx="100" ry="50" style="fill: #93c47d" />
+                    </g>
+                    <ellipse cx="330" cy="400" rx="100" ry="50" style="fill: #93c47d" />
+                    <g class="fragment" data-fragment-index="2">
+                      <g class="fragment fade-out" data-fragment-index="4">
+                        <ellipse cx="330" cy="100" rx="100" ry="50" style="fill: #dddddd" />
+                      </g>
+                      <g class="fragment fade-out" data-fragment-index="5">
+                        <ellipse cx="780" cy="250" rx="100" ry="50" style="fill: #dddddd" />
+                      </g>
+                      <g class="fragment" data-fragment-index="5">
+                        <g class="fragment fade-out" data-fragment-index="6">
+                          <ellipse cx="780" cy="250" rx="100" ry="50" style="fill: #6fa8dc" />
+                        </g>
+                      </g>
+                      <g class="fragment fade-out" data-fragment-index="6">
+                        <ellipse cx="330" cy="400" rx="100" ry="50" style="fill: #dddddd" />
+                      </g>
+                    </g>
+                    <g class="fragment current-visible" data-fragment-index="3">
+                      <ellipse cx="330" cy="100" rx="100" ry="50" style="fill: #6fa8dc" />
+                    </g>
+                    <g class="fragment current-visible" data-fragment-index="3">
+                      <ellipse cx="330" cy="250" rx="100" ry="50" style="fill: #dddddd" />
+                    </g>
+                    <g class="fragment" data-fragment-index="4">
+                      <g class="fragment fade-out" data-fragment-index="6">
+                        <ellipse cx="330" cy="250" rx="100" ry="50" style="fill: #6fa8dc" />
+                      </g>
+                    </g>
+                    <g class="fragment current-visible" data-fragment-index="5">
+                      <ellipse cx="780" cy="400" rx="100" ry="50" style="fill: #dddddd" />
+                    </g>
+                    <g class="fragment" data-fragment-index="6">
+                      <ellipse cx="780" cy="400" rx="100" ry="50" style="fill: #93c47d" />
+                    </g>
+                  </g>
+                  <g title="node_labels">
+                    <g class="fragment fade-out" data-fragment-index="4">
+                      <text x="330" y="95" text-anchor="middle">left camera</text>
+                      <text x="330" y="125" text-anchor="middle">node</text>
+                    </g>
+                    <text x="330" y="395" text-anchor="middle">right camera</text>
+                    <text x="330" y="425" text-anchor="middle">node</text>
+                    <g class="fragment fade-out" data-fragment-index="6">
+                      <text x="780" y="245" text-anchor="middle">stereo obst.</text>
+                      <text x="780" y="275" text-anchor="middle">detect node</text>
+                    </g>
+                    <g title="inactive" class="fragment" data-fragment-index="3">
+                      <g class="fragment fade-out" data-fragment-index="6">
+                        <text x="330" y="245" text-anchor="middle">left camera</text>
+                        <text x="330" y="275" text-anchor="middle">node #2</text>
+                      </g>
+                    </g>
+                    <g class="fragment" data-fragment-index="5">
+                      <text x="780" y="395" text-anchor="middle">mono. obst.</text>
+                      <text x="780" y="425" text-anchor="middle">detect node</text>
+                    </g>
+                  </g>
+                  <g title="topics">
+                    <g class="fragment fade-out" data-fragment-index="3">
+                      <polyline class="data-flow" points="420,120 690,230" marker-end="url(#fault-tolerance-triangle)"/>
+                      <text x="0" y="0" text-anchor="middle" transform="rotate(22) translate(580 -55)">/image_left</text>
+                    </g>
+                    <g class="fragment fade-out" data-fragment-index="6">
+                      <polyline class="data-flow" points="420,380 690,270" marker-end="url(#fault-tolerance-triangle)"/>
+                      <text x="0" y="0" text-anchor="middle" transform="rotate(-22) translate(390 535)">/image_right</text>
+                    </g>
+                    <g class="fragment" data-fragment-index="3">
+                      <g class="fragment fade-out" data-fragment-index="5">
+                        <polyline class="data-flow" points="430,250 680,250" marker-end="url(#fault-tolerance-triangle)"/>
+                        <text x="555" y="240" text-anchor="middle">/image_left</text>
+                      </g>
+                    </g>
+                    <g class="fragment" data-fragment-index="5">
+                      <polyline class="data-flow" points="430,400 680,400" marker-end="url(#fault-tolerance-triangle)"/>
+                      <text x="555" y="425" text-anchor="middle">/image</text>
+                    </g>
+                  </g>
+                  <g title="topic warning" class="fragment" data-fragment-index="1">
+                    <g title="badge" class="fragment fade-out" data-fragment-index="3">
+                      <polyline class="data-flow" points="420,120 690,230" marker-end="url(#fault-tolerance-triangle-orange)" style="stroke: orange"/>
+                      <text x="0" y="0" text-anchor="middle" transform="rotate(22) translate(580 -55)" style="fill: orange; stroke: orange">/image_left</text>
+
+                      <rect x="450" y="10" rx="20" ry="20" width="390" height="100" fill="gray" style="fill: #dddddd; stroke: orange"/>
+                      <image xlink:href="image/warning.svg" x="470" y="45" height="32px" width="32px"/>
+                      <text x="515" y="50" text-anchor="left" style="fill: orange; stroke: orange">Diagnostic event:</text>
+                      <text x="515" y="90" text-anchor="left" style="fill: orange; stroke: orange">"pub frequency too low"</text>
+                    </g>
+                  </g>
+                  <g title="topic warning" class="fragment current-visible" data-fragment-index="3">
+                    <rect x="450" y="50" rx="20" ry="20" width="390" height="100" fill="gray" style="fill: #dddddd; stroke: blue"/>
+                    <text x="475" y="90" text-anchor="left" style="fill: blue; stroke: blue">Fallback behavior #1:</text>
+                    <text x="475" y="130" text-anchor="left" style="fill: blue; stroke: blue">restart the left camera node</text>
+                  </g>
+                  <g title="topic warning" class="fragment current-visible" data-fragment-index="4">
+                    <rect x="450" y="90" rx="20" ry="20" width="460" height="100" fill="gray" style="fill: #dddddd; stroke: orange"/>
+                    <image xlink:href="image/warning.svg" x="470" y="125" height="32px" width="32px"/>
+                    <text x="515" y="130" text-anchor="left" style="fill: orange; stroke: orange">Diagnostic event:</text>
+                    <text x="515" y="170" text-anchor="left" style="fill: orange; stroke: orange">unable to connect to device</text>
+                    <image xlink:href="image/denied-icon.svg" x="390" y="255" height="32px" width="32px"/>
+                  </g>
+                  <g title="topic warning" class="fragment" data-fragment-index="5">
+                    <rect x="450" y="50" rx="20" ry="20" width="390" height="100" fill="gray" style="fill: #dddddd; stroke: blue"/>
+                    <text x="475" y="90" text-anchor="left" style="fill: blue; stroke: blue">Fallback behavior #2:</text>
+                    <text x="475" y="130" text-anchor="left" style="fill: blue; stroke: blue">switch to monocular det.</text>
+                  </g>
+                </g>
+              </svg>
+            </div>
+
+            <div style="font-size: 40%; margin-left: 30%">Icons made by <a href="https://www.flaticon.com/authors/alfredo-hernandez" title="Alfredo Hernandez">Alfredo Hernandez</a> and <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+            <aside class="notes">
+              <ul>
+                <li>On a previous flight Rob hit a tree because the stereo obstacle detection stopped working.</li>
+                <li>Therefore is looks into making the software more fault tolerant.</li>
+                <li>Diagnostic event, fallback behavior to restart faulty node, escalate to second fallback behavior, switch to alternative obstacle detection..</li>
+                <li>The diagnostic system can check attributes like the publishing rate as well as use DDS specific attributes like deadline or time budget.</li>
+              </ul>
+            </aside>
+            <ul>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Unsecure System</h2>
+            <div class="fixed_size">
+              <img src="image/laptop.svg" width="25%" style="top: 250px; left: 10%" alt=""/>
+              <img src="image/drone.svg" width="25%" style="top: 250px; right: 10%" alt=""/>
+
+              <img src="image/game-controller.svg" width="10%" style="top: 150px; left: 18%" alt=""/>
+              <img src="image/image.svg" width="12%" style="top: 500px; left: 17%" alt=""/>
+              <img src="image/bandit.svg" width="8%" style="top: 450px; left: 80%" alt="" class="fragment" data-fragment-index="1"/>
+              <img src="image/image.svg" width="12%" style="top: 500px; left: 88%" alt="" class="fragment" data-fragment-index="2"/>
+              <img src="image/bandit.svg" width="8%" style="top: 100px; left: 80%" alt="" class="fragment" data-fragment-index="3"/>
+              <img src="image/game-controller.svg" width="10%" style="top: 150px; left: 88%" alt="" class="fragment" data-fragment-index="4"/>
+
+              <svg id="unsecure-system-data-flow" width="960" height="550" xmlns:xlink= "http://www.w3.org/1999/xlink">
+                <marker id="unsecure-system-triangle" viewBox="0 0 10 10" refX="10" refY="5" markerUnits="strokeWidth" markerWidth="5" markerHeight="4" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z"/>
+                </marker>
+                <g title="control">
+                  <text x="520" y="110" text-anchor="middle">command data</text>
+                  <polyline class="data-flow" points="300,120 740,120 740,200" marker-end="url(#unsecure-system-triangle)" style="stroke-dasharray: 25 75; stroke-dashoffset: 0" />
+                </g>
+                <g title="video">
+                  <text x="520" y="460" text-anchor="middle">video data</text>
+                  <polyline class="data-flow" points="740,360 740,470 300,470" marker-end="url(#unsecure-system-triangle)" style="stroke-dasharray: 75 25; stroke-dashoffset: 0"/>
+                </g>
+                <g title="sniffed-video" class="fragment" data-fragment-index="2">
+                  <polyline class="data-flow" points="740,360 740,470 820,470" marker-end="url(#unsecure-system-triangle)" style="stroke-dasharray: 75 25; stroke-dashoffset: 0"/>
+                </g>
+                <g title="spoofed-control" class="fragment" data-fragment-index="4">
+                  <polyline class="data-flow" points="820,120 740,120 740,200" marker-end="url(#unsecure-system-triangle)" style="stroke: red; stroke-dasharray: 25 75; stroke-dashoffset: 0" />
+                  <text x="550" y="180" text-anchor="middle" style="fill: #f26a0f; stroke: #f26a0f">Command spoofed</text>
+                  <image xlink:href="image/exploding.svg" x="550" y="200" height="64px" width="64px"/>
+                </g>
+              </svg>
+            </div>
+
+            <div style="font-size: 40%; margin-left: 30%">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a>, <a href="https://www.flaticon.com/authors/ocha" title="OCHA">OCHA</a> and <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+            <aside class="notes">
+              <ul>
+                <li>Rob's friend noticed that by inadvertendly launching a joystick node and an image viewer on his laptop he was able to watch the video stream as well as take over Rob's drone.</li>
+                <li>He points out that this can be a real problem for the safety of the drone and would love to be able to restrict access to these topics.</li>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>Securing the System</h2>
+            <div class="fixed_size">
+              <img src="image/laptop.svg" width="25%" style="top: 250px; left: 10%" alt=""/>
+              <img src="image/drone.svg" width="25%" style="top: 250px; right: 10%" alt=""/>
+
+              <img src="image/game-controller.svg" width="10%" style="top: 150px; left: 18%" alt=""/>
+              <img src="image/image.svg" width="12%" style="top: 500px; left: 17%" alt=""/>
+              <img src="image/bandit.svg" width="8%" style="top: 450px; left: 80%" alt="" class="fragment" data-fragment-index="2"/>
+              <img src="image/binary-code.svg" width="8%" style="top: 520px; left: 90%" alt="" class="fragment" data-fragment-index="2"/>
+              <img src="image/bandit.svg" width="8%" style="top: 100px; left: 80%" alt="" class="fragment" data-fragment-index="4"/>
+              <img src="image/game-controller.svg" width="10%" style="top: 150px; left: 88%" alt="" class="fragment" data-fragment-index="4"/>
+              <img src="image/denied-icon.svg" width="5%" style="top: 220px; left: 81%" alt="" class="fragment" data-fragment-index="4"/>
+
+              <svg id="securing-the-system-data-flow" width="960" height="550" xmlns:xlink= "http://www.w3.org/1999/xlink">
+                <marker id="securing-the-system-triangle" viewBox="0 0 10 10" refX="10" refY="5" markerUnits="strokeWidth" markerWidth="5" markerHeight="4" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z"/>
+                </marker>
+                <marker id="securing-the-system-deadend" viewBox="0 0 5 30" refX="5" refY="15" markerUnits="strokeWidth" markerWidth="5" markerHeight="4" orient="auto">
+                  <rect x="0" y="0" width="5" height="30" style="fill: red; stroke: red"/>
+                </marker>
+                <g title="control">
+                  <text x="520" y="110" text-anchor="middle">command data</text>
+                  <polyline class="data-flow" points="300,120 740,120 740,200" marker-end="url(#securing-the-system-triangle)" style="stroke-dasharray: 25 75; stroke-dashoffset: 0" />
+                </g>
+                <g title="video">
+                  <text x="520" y="460" text-anchor="middle">video data</text>
+                  <polyline class="data-flow" points="740,360 740,470 300,470" marker-end="url(#securing-the-system-triangle)" style="stroke-dasharray: 75 25; stroke-dashoffset: 0"/>
+                </g>
+                <g title="encryption" class="fragment" data-fragment-index="1">
+                  <rect x="350" y="360" rx="20" ry="20" width="350" height="70" fill="gray" style="fill: #dddddd; stroke: gray"/>
+                  <image xlink:href="image/key.svg" x="360" y="380" height="32px" width="32px"/>
+                  <text x="400" y="405" text-anchor="left">Encrypt sensitive data</text>
+                  <polyline class="data-flow" points="740,360 740,470 300,470" marker-end="url(#securing-the-system-triangle)" style="stroke-dasharray: 75 25; stroke-dashoffset: 0; stroke: blue"/>
+                </g>
+                <g title="sniffed-video" class="fragment" data-fragment-index="2">
+                  <polyline class="data-flow" points="740,360 740,470 820,470" marker-end="url(#securing-the-system-triangle)" style="stroke-dasharray: 75 25; stroke-dashoffset: 0; stroke: blue"/>
+                </g>
+                <g title="data-integrity" class="fragment" data-fragment-index="3">
+                  <rect x="400" y="130" rx="20" ry="20" width="250" height="60" fill="gray" style="fill: #dddddd; stroke: gray"/>
+                  <text x="430" y="170" text-anchor="left">Authentication</text>
+                </g>
+                <g title="spoofed-control" class="fragment" data-fragment-index="4">
+                  <polyline class="data-flow" points="820,120 760,120 760,200" marker-end="url(#securing-the-system-deadend)" style="stroke: red; stroke-dasharray: 25 75; stroke-dashoffset: 0" />
+                </g>
+              </svg>
+            </div>
+
+            <div style="font-size: 40%; margin-left: 30%">Icons made by <a href="https://www.flaticon.com/authors/alfredo-hernandez" title="Alfredo Hernandez">Alfredo Hernandez</a>, <a href="http://www.freepik.com" title="Freepik">Freepik</a>, <a href="https://www.flaticon.com/authors/prosymbols" title="Prosymbols">Prosymbols</a> and <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+            <aside class="notes">
+              <ul>
+                <li>Rob wants to make sure that he can protect the privacy of its users and prevent ill-intentioned people to take control of his product.</li>
+                <li>Rob wants the camera feed to be protected and unreadable by external agents. Using the GUI he selects the camera topic and chooses "Encrypt and Sign Data".</li>
+                <li>He also wants to make sure that the commands sent to the robot cannot be tempered with. He doesn't care if the data can be read as long as nobody can modify it: he chooses "Authenticate and Sign" the command topic.</li>
+              </ul>
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Validation and Certification</h2>
+            <ul>
+              <li>Use certified hardware components (which talks DDS)</li>
+              <li>Use certified DDS implementation</li>
+              <li>Use certified / validated software components</li>
+              <li style="list-style-type: none; line-height: 0.5em">&nbsp;</li>
+              <li>Select only the subsystems of ROS 2 which are required for the use case</li>
+              <li>Build your own subsystem on top</li>
+              <li style="list-style-type: none; line-height: 0.5em">&nbsp;</li>
+              <li style="list-style-type: none">&rarr; Reduced effort to validate the custom application by
+                <ul>
+                  <li>Using certified subsystem</li>
+                  <li>Reducing footprint as much as possible</li>
+                </ul>
+              </li>
+              <li style="list-style-type: none"><br/><br/>&nbsp;</li>
+            </ul>
+
+            <img src="image/certified.svg" width="92px" alt="" style="position: absolute; top: 18%; right: 12%"/>
+
+            <div style="font-size: 40%; margin-left: 30%">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+          </section>
+
+          <section>
+            <h2>Recap #3</h2>
+            <ul style="list-style: none;">
+              <li><img src="image/check.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/> Choose process layout at deploy time
+                <ul style="list-style: none;">
+                  <li><img src="image/hourglass.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/> Support from launch to easily configure this</li>
+                </ul>
+              </li>
+              <li style="line-height: 0.8em">&nbsp;</li>
+              <li><img src="image/hourglass.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/> Event based system providing the infrastructure for fault detection,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no tooling yet</li>
+              <li style="line-height: 0.8em">&nbsp;</li>
+              <li><img src="image/check.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/> Security following the <a href="http://www.omg.org/spec/DDS-SECURITY/">DDS-Security</a> standard
+                <ul style="list-style: none;">
+                  <li><img src="image/hourglass.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/> Fine grain configuration</li>
+                </ul>
+              </li>
+              <li style="line-height: 0.8em">&nbsp;</li>
+              <li><img src="image/hourglass.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/> None of the ROS 2 development is certified
+                <ul style="list-style: none;">
+                  <li><img src="image/check.svg" width="32px" alt="" style="margin: 0; vertical-align: middle"/> But it can interoperate with certified implementations</li>
+                </ul>
+              </li>
+              <li style="line-height: 0.8em">&nbsp;</li>
+            </ul>
+
+            <div style="font-size: 40%; margin-left: 30%">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+            <aside class="notes">
+              <ul>
+                <li>Go through bullets.</li>
+              </ul>
+            </aside>
+          </section>
         </section>
 
         <section>
@@ -85,6 +1449,32 @@
           { src: 'plugin/notes/notes.js', async: true },
           { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
         ]
+      });
+
+      var slide_index_h = 0;
+      var slide_index_v = 0;
+      var data_flow_duration = undefined;
+
+      Reveal.addEventListener( 'slidechanged', function(event) {
+        console.log('slidechanged', event.indexh, event.indexv);
+        slide_index_h = event.indexh;
+        slide_index_v = event.indexv;
+        if (slide_index_h == 1 && slide_index_v == 2) {
+          // moving outdoor slide
+          data_flow_duration = 1;
+        }
+      });
+      Reveal.addEventListener('fragmentshown', function(event) {
+        console.log('fragmentshown');
+        if (slide_index_h == 1 && slide_index_v == 2) {
+          // moving outdoor slide
+          data_flow_duration++;
+          svg = document.getElementById('moving-outdoor-data-flow');
+          lines = svg.getElementsByTagName('polyline');
+          for (var i = 0; i < lines.length; i++) {
+            lines[i].style.animationDuration = data_flow_duration + 's';
+          }
+        }
       });
     </script>
   </body>

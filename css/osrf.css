@@ -88,6 +88,17 @@ section[data-markdown] > ul {
   font-size: .8em; }
 
 /*********************************************
+ * SECTION SIZE
+ *********************************************/
+.fixed_size {
+  height: 550px;
+  width: 100%;
+}
+.fixed_size img {
+  position: absolute;
+}
+
+/*********************************************
  * SVG
  *********************************************/
 svg ellipse, svg g path, svg polyline, svg rect {
@@ -107,3 +118,25 @@ svg text {
   background-color: inherit;
   font-weight: bold;
   text-decoration: underline; }
+
+.data-flow {
+  animation: dataflow 1s linear infinite;
+}
+.slower1 .data-flow {
+  animation: dataflow 2s linear infinite;
+}
+.slower2 .data-flow {
+  animation: dataflow 3s linear infinite;
+}
+.slower3 .data-flow {
+  animation: dataflow 4s linear infinite;
+}
+
+@keyframes dataflow {
+  from{
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -100;
+  }
+}
