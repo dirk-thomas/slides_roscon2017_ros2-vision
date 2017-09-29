@@ -97,6 +97,13 @@ section[data-markdown] > ul {
 .fixed_size img {
   position: absolute;
 }
+.reveal section svg {
+  margin-top: -250px;
+}
+.reveal section > ul {
+  height: 600px;
+  margin-top: -200px;
+}
 
 /*********************************************
  * SVG
